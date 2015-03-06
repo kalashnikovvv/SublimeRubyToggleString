@@ -38,12 +38,12 @@ class RubyToggleStringCommand(sublime_plugin.TextCommand):
                 inner = selected[1:-1]
                 inner = re.sub(r"\\'", "'", inner)
                 inner = re.sub(r'\\"', '"', inner)
-                replace = '%Q{' + inner + '}'
-            elif selected[0] == "%":
-                inner = selected[3:-1]
-                inner = re.sub(r'[^\\]"', lambda m: re.sub('"', '\\"', m.group(0)), inner)
-                inner = re.sub(r"\\'", "'", inner)
                 replace = '"' + inner + '"'
+            # elif selected[0] == "%":
+            #     inner = selected[3:-1]
+            #     inner = re.sub(r'[^\\]"', lambda m: re.sub('"', '\\"', m.group(0)), inner)
+            #     inner = re.sub(r"\\'", "'", inner)
+            #     replace = '"' + inner + '"'
             else:
                 return
             self.view.replace(edit, region, replace)
